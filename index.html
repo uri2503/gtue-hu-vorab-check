@@ -1,0 +1,1308 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTÜ HU-Vorab-Check – Kfz-Prüfservice Oberboihingen</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700;900&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* GTÜ offizielle CI */
+    --gtue-red:    #E3001B;
+    --gtue-red-dk: #b5001a;
+    --gtue-gray:   #9D9D9D;
+    --gtue-gray-lt:#D0D0D0;
+    --gtue-white:  #ffffff;
+
+    /* Unterstützende Farben */
+    --gtue-dark:   #1a1a1a;
+    --gtue-offwhite: #f5f5f5;
+    --gtue-border: #e0e0e0;
+    --gtue-text:   #2a2a2a;
+    --gtue-sub:    #5a5a5a;
+  }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    font-weight: 400;
+    color: var(--gtue-text);
+    background: var(--gtue-offwhite);
+    line-height: 1.6;
+  }
+
+  /* ── TAB NAVIGATION ── */
+  .tab-nav {
+    background: var(--gtue-dark);
+    display: flex;
+    border-bottom: 3px solid var(--gtue-red);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .tab-btn {
+    padding: 14px 32px;
+    background: transparent;
+    border: none;
+    color: rgba(255,255,255,0.5);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -3px;
+  }
+
+  .tab-btn:hover { color: #fff; }
+
+  .tab-btn.active {
+    color: var(--gtue-red);
+    border-bottom-color: var(--gtue-red);
+  }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+
+  /* ════════════════════════════
+     GTÜ HEADER
+  ════════════════════════════ */
+  .gtue-header {
+    background: var(--gtue-white);
+    border-bottom: 3px solid var(--gtue-red);
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .gtue-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .gtue-logo-img {
+    height: 52px;
+    width: auto;
+    display: block;
+  }
+
+  .header-sep {
+    width: 1px;
+    height: 36px;
+    background: var(--gtue-gray-lt);
+  }
+
+  .header-station {
+    font-size: 14px;
+    color: var(--gtue-sub);
+    line-height: 1.4;
+  }
+
+  .header-station strong {
+    display: block;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gtue-dark);
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .header-tel {
+    font-size: 14px;
+    color: var(--gtue-sub);
+    text-align: right;
+    line-height: 1.5;
+  }
+
+  .header-tel strong { color: var(--gtue-dark); font-size: 15px; display: block; }
+
+  .header-badge {
+    background: var(--gtue-red);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    white-space: nowrap;
+  }
+
+
+  /* ════════════════════════════
+     HERO
+  ════════════════════════════ */
+  .lp-hero {
+    background: var(--gtue-dark);
+    padding: 72px 48px 64px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Subtile GTÜ-Raute im Hintergrund */
+  .lp-hero::before {
+    content: 'GTÜ';
+    position: absolute;
+    right: -20px;
+    top: -30px;
+    font-size: 280px;
+    font-weight: 900;
+    color: rgba(227,0,27,0.05);
+    line-height: 1;
+    pointer-events: none;
+    font-family: 'Source Sans 3', sans-serif;
+    letter-spacing: -0.05em;
+  }
+
+  /* Roter Akzentstreifen links */
+  .lp-hero::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background: var(--gtue-red);
+  }
+
+  .hero-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(227,0,27,0.4);
+    background: rgba(227,0,27,0.08);
+    padding: 6px 16px;
+    margin-bottom: 28px;
+    color: #ff4d60;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .hero-eyebrow-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--gtue-red);
+    animation: blink 2s ease-in-out infinite;
+  }
+
+  @keyframes blink {
+    0%,100% { opacity:1; }
+    50% { opacity:0.3; }
+  }
+
+  .lp-hero h1 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 48px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+
+  .lp-hero h1 em {
+    font-style: italic;
+    color: var(--gtue-red);
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,0.65);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    font-weight: 300;
+  }
+
+  .hero-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--gtue-red);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 16px 36px;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.15s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: var(--gtue-red-dk);
+    transform: translateY(-1px);
+  }
+
+  .hero-trust {
+    color: rgba(255,255,255,0.45);
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-trust::before {
+    content: '✓';
+    color: var(--gtue-red);
+    font-weight: 900;
+  }
+
+
+  /* ════════════════════════════
+     STATS STRIP
+  ════════════════════════════ */
+  .stats-strip {
+    background: var(--gtue-white);
+    border-bottom: 1px solid var(--gtue-border);
+  }
+
+  .stats-inner {
+    max-width: 820px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 32px 20px;
+    flex: 1;
+    border-right: 1px solid var(--gtue-border);
+    position: relative;
+  }
+
+  .stat-item:last-child { border-right: none; }
+
+  /* Roter Hover-Indikator */
+  .stat-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gtue-red);
+    transform: scaleX(0);
+    transition: transform 0.25s;
+  }
+
+  .stat-item:hover::after { transform: scaleX(1); }
+
+  .stat-num {
+    font-family: 'Source Serif 4', serif;
+    font-size: 42px;
+    font-weight: 600;
+    color: var(--gtue-red);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--gtue-gray);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+
+
+  /* ════════════════════════════
+     MAIN BODY
+  ════════════════════════════ */
+  .lp-body {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 60px 48px 80px;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gtue-red);
+    margin-bottom: 10px;
+  }
+
+  .section-title {
+    font-family: 'Source Serif 4', serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--gtue-dark);
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+
+  .section-sub {
+    font-size: 15px;
+    color: var(--gtue-sub);
+    margin-bottom: 40px;
+    max-width: 540px;
+    font-weight: 300;
+  }
+
+
+  /* ── PROZESS TIMELINE ── */
+  .prozess-section { margin-bottom: 64px; }
+
+  .prozess-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+
+  /* Verbindungslinie */
+  .prozess-steps::before {
+    content: '';
+    position: absolute;
+    top: 26px;
+    left: calc(12.5% + 4px);
+    right: calc(12.5% + 4px);
+    height: 2px;
+    background: linear-gradient(to right, var(--gtue-red), var(--gtue-gray-lt));
+    z-index: 0;
+  }
+
+  .prozess-step {
+    text-align: center;
+    padding: 0 10px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-bubble {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--gtue-red);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 18px;
+    font-size: 20px;
+    box-shadow: 0 4px 14px rgba(227,0,27,0.3);
+    position: relative;
+  }
+
+  .step-bubble.gray-bubble {
+    background: var(--gtue-gray);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+  }
+
+  .prozess-step h4 {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gtue-dark);
+    margin-bottom: 7px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+  }
+
+  .prozess-step p {
+    font-size: 12px;
+    color: var(--gtue-sub);
+    line-height: 1.55;
+  }
+
+
+  /* ── NUTZEN GRID ── */
+  .nutzen-section { margin-bottom: 64px; }
+
+  .nutzen-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: var(--gtue-border);
+  }
+
+  .nutzen-card {
+    background: var(--gtue-white);
+    padding: 28px 30px;
+    transition: background 0.2s;
+    position: relative;
+  }
+
+  .nutzen-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gtue-red);
+    transform: scaleX(0);
+    transition: transform 0.25s;
+    transform-origin: left;
+  }
+
+  .nutzen-card:hover { background: #fafafa; }
+  .nutzen-card:hover::before { transform: scaleX(1); }
+
+  .card-icon {
+    font-size: 30px;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .nutzen-card h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gtue-dark);
+    margin-bottom: 8px;
+  }
+
+  .nutzen-card p {
+    font-size: 13px;
+    color: var(--gtue-sub);
+    line-height: 1.65;
+  }
+
+
+  /* ── QR / CTA BLOCK ── */
+  .qr-block {
+    background: var(--gtue-dark);
+    padding: 52px 48px;
+    display: flex;
+    align-items: center;
+    gap: 52px;
+    margin-bottom: 64px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .qr-block::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 5px; height: 100%;
+    background: var(--gtue-red);
+  }
+
+  .qr-placeholder {
+    width: 148px;
+    height: 148px;
+    background: var(--gtue-white);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .qr-placeholder svg { width: 100px; height: 100px; opacity: 0.25; }
+
+  .qr-placeholder span {
+    font-size: 9px;
+    color: #aaa;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .qr-text h3 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 26px;
+    color: #fff;
+    margin-bottom: 12px;
+    font-weight: 400;
+    line-height: 1.3;
+  }
+
+  .qr-text h3 strong { color: var(--gtue-red); font-weight: 600; }
+
+  .qr-text p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.65;
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+
+  .qr-url {
+    font-size: 13px;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    background: rgba(227,0,27,0.15);
+    border: 1px solid rgba(227,0,27,0.35);
+    display: inline-block;
+    padding: 8px 16px;
+  }
+
+
+  /* ── CTA SECTION ── */
+  .cta-section {
+    text-align: center;
+    padding: 52px 40px;
+    background: var(--gtue-white);
+    border: 1px solid var(--gtue-border);
+    border-top: 3px solid var(--gtue-red);
+  }
+
+  .cta-section h2 {
+    font-family: 'Source Serif 4', serif;
+    font-size: 28px;
+    color: var(--gtue-dark);
+    margin-bottom: 12px;
+  }
+
+  .cta-section p {
+    color: var(--gtue-sub);
+    font-size: 15px;
+    margin-bottom: 30px;
+    font-weight: 300;
+  }
+
+
+  /* ── GTÜ FOOTER ── */
+  .gtue-footer {
+    background: var(--gtue-dark);
+    border-top: 3px solid var(--gtue-red);
+    padding: 28px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .footer-logo { height: 32px; width: auto; opacity: 0.8; }
+
+  .footer-info {
+    color: rgba(255,255,255,0.4);
+    font-size: 12px;
+    line-height: 1.8;
+  }
+
+  .footer-info a { color: rgba(227,0,27,0.7); text-decoration: none; }
+
+  .footer-powered {
+    font-size: 11px;
+    color: rgba(255,255,255,0.25);
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  .footer-powered span { color: rgba(227,0,27,0.5); }
+
+
+  /* ════════════════════════════
+     E-MAIL VORLAGE
+  ════════════════════════════ */
+  .email-wrapper {
+    padding: 48px 40px;
+    background: #ebebeb;
+  }
+
+  .email-meta {
+    max-width: 700px;
+    margin: 0 auto 28px;
+    background: #fff;
+    border: 1px solid var(--gtue-border);
+    border-top: 3px solid var(--gtue-gray);
+    padding: 20px 24px;
+  }
+
+  .email-meta-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gtue-gray);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--gtue-border);
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 12px;
+    font-size: 13px;
+    margin-bottom: 8px;
+    align-items: baseline;
+  }
+
+  .meta-row:last-child { margin-bottom: 0; }
+
+  .meta-label {
+    color: #aaa;
+    min-width: 88px;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .meta-value { color: var(--gtue-text); }
+
+  .meta-editable {
+    color: var(--gtue-red);
+    font-style: italic;
+    background: rgba(227,0,27,0.04);
+    padding: 2px 8px;
+    border: 1px dashed rgba(227,0,27,0.3);
+  }
+
+
+  /* EMAIL CARD */
+  .email-card {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.09);
+  }
+
+  /* Email Header */
+  .email-header {
+    background: #fff;
+    border-bottom: 3px solid var(--gtue-red);
+    padding: 24px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .email-logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .email-logo { height: 48px; width: auto; }
+
+  .email-header-sep {
+    width: 1px;
+    height: 32px;
+    background: var(--gtue-gray-lt);
+  }
+
+  .email-station-hdr {
+    font-size: 13px;
+    color: var(--gtue-sub);
+    line-height: 1.45;
+  }
+
+  .email-station-hdr strong {
+    display: block;
+    color: var(--gtue-dark);
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .email-header-tag {
+    background: var(--gtue-red);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 7px 14px;
+    white-space: nowrap;
+  }
+
+  /* Email Body */
+  .email-body {
+    padding: 40px 36px;
+  }
+
+  .email-salutation {
+    font-size: 17px;
+    color: var(--gtue-text);
+    margin-bottom: 20px;
+  }
+
+  .email-body p {
+    font-size: 15px;
+    color: var(--gtue-sub);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  /* HU Banner */
+  .hu-banner {
+    background: #fff5f5;
+    border: 1px solid rgba(227,0,27,0.25);
+    border-left: 4px solid var(--gtue-red);
+    padding: 18px 20px;
+    margin: 24px 0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .hu-banner-icon { font-size: 30px; flex-shrink: 0; }
+
+  .hu-banner-text strong {
+    display: block;
+    color: var(--gtue-red-dk);
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 3px;
+  }
+
+  .hu-banner-text span {
+    font-size: 13px;
+    color: #8a3030;
+  }
+
+  /* Check List */
+  .check-list {
+    list-style: none;
+    padding: 0;
+    margin: 24px 0;
+    background: #f9f9f9;
+    border: 1px solid var(--gtue-border);
+    border-left: 4px solid var(--gtue-gray);
+  }
+
+  .check-list li {
+    font-size: 14px;
+    color: var(--gtue-sub);
+    padding: 10px 20px 10px 40px;
+    position: relative;
+    border-bottom: 1px solid var(--gtue-border);
+  }
+
+  .check-list li:last-child { border-bottom: none; }
+
+  .check-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 16px;
+    color: var(--gtue-red);
+    font-weight: 900;
+  }
+
+  /* QR Email Block */
+  .email-qr-block {
+    background: var(--gtue-dark);
+    margin: 32px 0;
+    padding: 32px;
+    display: flex;
+    gap: 28px;
+    align-items: center;
+  }
+
+  .email-qr-box {
+    width: 128px;
+    height: 128px;
+    background: #fff;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  /* CSS QR Platzhalter */
+  .qr-mock {
+    width: 90px;
+    height: 90px;
+    position: relative;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 8px,
+      rgba(0,0,0,0.07) 8px, rgba(0,0,0,0.07) 9px
+    ),
+    repeating-linear-gradient(
+      90deg, transparent, transparent 8px,
+      rgba(0,0,0,0.07) 8px, rgba(0,0,0,0.07) 9px
+    );
+  }
+
+  .qr-mock::before, .qr-mock::after,
+  .qr-c3 { position: absolute; border: 4px solid #1a1a1a; }
+  .qr-mock::before { content:''; top:3px; left:3px; width:20px; height:20px; }
+  .qr-mock::after  { content:''; top:3px; right:3px; width:20px; height:20px; }
+  .qr-c3 { bottom:3px; left:3px; width:20px; height:20px; }
+
+  .email-qr-box span {
+    font-size: 9px;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-align: center;
+  }
+
+  .email-qr-text h4 {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .email-qr-text p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+
+  .email-qr-url {
+    font-size: 12px;
+    font-weight: 700;
+    color: #ff6677;
+    letter-spacing: 0.04em;
+    word-break: break-all;
+  }
+
+  /* CTA */
+  .email-cta-row { text-align: center; margin: 8px 0 24px; }
+
+  .email-btn {
+    display: inline-block;
+    background: var(--gtue-red);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 16px 40px;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .email-hint {
+    font-size: 12px;
+    color: #bbb;
+    text-align: center;
+    margin-bottom: 6px;
+  }
+
+  .email-url-fallback {
+    font-size: 12px;
+    color: var(--gtue-red);
+    text-align: center;
+    word-break: break-all;
+    margin-bottom: 24px;
+  }
+
+  /* Email Footer */
+  .email-footer {
+    background: #f5f5f5;
+    border-top: 1px solid var(--gtue-border);
+    padding: 20px 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .email-footer-logo { height: 28px; width: auto; opacity: 0.55; }
+
+  .email-footer-text {
+    font-size: 12px;
+    color: #aaa;
+    line-height: 1.8;
+  }
+
+  .email-footer-text a { color: var(--gtue-red); text-decoration: none; }
+
+  .email-footer-right {
+    font-size: 11px;
+    color: #ccc;
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  /* Helper */
+  .email-helper {
+    max-width: 700px;
+    margin: 20px auto 0;
+    font-size: 12px;
+    color: #666;
+    background: #fff;
+    border: 1px dashed var(--gtue-gray-lt);
+    border-left: 4px solid var(--gtue-gray);
+    padding: 14px 18px;
+    line-height: 1.7;
+  }
+
+  .email-helper strong { color: var(--gtue-dark); }
+  .email-helper a { color: var(--gtue-red); }
+
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 660px) {
+    .gtue-header { padding: 0 20px; height: auto; padding: 14px 20px; flex-wrap: wrap; gap: 12px; }
+    .lp-hero { padding: 40px 20px; }
+    .lp-hero h1 { font-size: 32px; }
+    .lp-body { padding: 36px 20px; }
+    .stats-inner { flex-direction: column; }
+    .stat-item { border-right: none; border-bottom: 1px solid var(--gtue-border); }
+    .nutzen-grid { grid-template-columns: 1fr; gap: 1px; }
+    .prozess-steps { grid-template-columns: 1fr 1fr; row-gap: 32px; }
+    .prozess-steps::before { display: none; }
+    .qr-block { flex-direction: column; gap: 28px; padding: 36px 24px; }
+    .gtue-footer { flex-direction: column; align-items: flex-start; padding: 24px 20px; }
+    .tab-btn { padding: 12px 14px; font-size: 10px; }
+    .email-wrapper { padding: 24px 12px; }
+    .email-header { flex-direction: column; gap: 12px; align-items: flex-start; }
+    .email-body { padding: 28px 20px; }
+    .email-qr-block { flex-direction: column; }
+    .email-footer { flex-direction: column; text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── TABS ── -->
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('landing',this)">🖥 Landingpage</button>
+  <button class="tab-btn" onclick="showTab('email',this)">📧 E-Mail-Vorlage</button>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     TAB 1 · LANDINGPAGE
+══════════════════════════════════════ -->
+<div id="tab-landing" class="tab-panel active">
+
+  <!-- HEADER -->
+  <div class="gtue-header">
+    <div class="gtue-logo-wrap">
+      <img src="gtue-logo.jpeg" alt="GTÜ Logo" class="gtue-logo-img">
+      <div class="header-sep"></div>
+      <div class="header-station">
+        <strong>Kfz-Prüfservice Oberboihingen</strong>
+        Steffen Höhn · GTÜ-Vertragspartner
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="header-tel">
+        <strong>07022 – 2165282</strong>
+        Mo–Fr · 8–17 Uhr
+      </div>
+      <div class="header-badge">Neu: HU-Vorab-Check</div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="lp-hero">
+    <div class="hero-inner">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-dot"></span>
+        Exklusiv für unsere HU-Kunden
+      </div>
+      <h1>Vorbereitet<br>zur <em>Hauptuntersuchung.</em></h1>
+      <p class="hero-sub">
+        Fotografieren Sie Ihr Fahrzeug bequem zuhause.
+        Unsere KI erkennt offene Mängel – bevor es der Prüfingenieur tut.
+        Kein Stress. Keine Überraschungen. Kostenlos.
+      </p>
+      <div class="hero-cta-row">
+        <a href="#" class="btn-primary">Vorab-Check starten →</a>
+        <span class="hero-trust">Kein Login · Direkt im Browser</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-strip">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <div class="stat-num">3 min</div>
+        <div class="stat-label">Prüfzeit zuhause</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">87 %</div>
+        <div class="stat-label">Mängel früh erkannt</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">0 €</div>
+        <div class="stat-label">Kostenlos für HU-Kunden</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="lp-body">
+
+    <!-- PROZESS -->
+    <div class="prozess-section">
+      <div class="section-eyebrow">So funktioniert es</div>
+      <div class="section-title">In vier Schritten zur stressfreien HU</div>
+      <p class="section-sub">Keine App, keine Registrierung. Alles direkt im Browser – auf dem Smartphone.</p>
+      <div class="prozess-steps">
+        <div class="prozess-step">
+          <div class="step-bubble">📩</div>
+          <h4>Einladung</h4>
+          <p>Sie erhalten den persönlichen Prüfstellen-Link per E-Mail oder SMS</p>
+        </div>
+        <div class="prozess-step">
+          <div class="step-bubble">📸</div>
+          <h4>Fotos machen</h4>
+          <p>Fotografieren Sie Ihr Fahrzeug zuhause – Reifen, Lichter, Karosserie</p>
+        </div>
+        <div class="prozess-step">
+          <div class="step-bubble">🤖</div>
+          <h4>KI-Analyse</h4>
+          <p>Sofortige Einschätzung zu Mängeln mit klarer Ampelbewertung</p>
+        </div>
+        <div class="prozess-step">
+          <div class="step-bubble gray-bubble">✅</div>
+          <h4>HU-Termin</h4>
+          <p>Sie kommen vorbereitet – die Prüfung läuft ruhiger und schneller</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- NUTZEN -->
+    <div class="nutzen-section">
+      <div class="section-eyebrow">Was der Check erkennt</div>
+      <div class="section-title">Die häufigsten HU-Mängel – vorab sehen</div>
+      <p class="section-sub">Die KI analysiert Ihre Fotos auf die gängigsten prüfungsrelevanten Schwachstellen.</p>
+      <div class="nutzen-grid">
+        <div class="nutzen-card">
+          <span class="card-icon">🔦</span>
+          <h3>Beleuchtung</h3>
+          <p>Defekte Rücklichter, Blinker oder Scheinwerfer werden sofort erkannt – bevor sie zur Mängelposition werden.</p>
+        </div>
+        <div class="nutzen-card">
+          <span class="card-icon">🔄</span>
+          <h3>Reifenzustand</h3>
+          <p>Profiltiefe, sichtbare Schäden und Alterungsrisse automatisch bewertet.</p>
+        </div>
+        <div class="nutzen-card">
+          <span class="card-icon">🛡️</span>
+          <h3>Karosserie & Rost</h3>
+          <p>Sicherheitsrelevante Korrosionsstellen an Trägern, Schwellern und Radläufen fallen auf.</p>
+        </div>
+        <div class="nutzen-card">
+          <span class="card-icon">⚠️</span>
+          <h3>Klare Empfehlung</h3>
+          <p>Ampelbewertung: Grün, Gelb, Rot – mit konkretem Handlungsvorschlag für jeden erkannten Punkt.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- QR / SCAN BLOCK -->
+    <div class="qr-block">
+      <div class="qr-placeholder">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <rect x="5" y="5" width="35" height="35" fill="none" stroke="#ccc" stroke-width="5"/>
+          <rect x="13" y="13" width="19" height="19" fill="#e0e0e0"/>
+          <rect x="60" y="5" width="35" height="35" fill="none" stroke="#ccc" stroke-width="5"/>
+          <rect x="68" y="13" width="19" height="19" fill="#e0e0e0"/>
+          <rect x="5" y="60" width="35" height="35" fill="none" stroke="#ccc" stroke-width="5"/>
+          <rect x="13" y="68" width="19" height="19" fill="#e0e0e0"/>
+          <rect x="50" y="50" width="6" height="6" fill="#e0e0e0"/>
+          <rect x="60" y="56" width="6" height="6" fill="#e0e0e0"/>
+          <rect x="70" y="50" width="6" height="6" fill="#e0e0e0"/>
+          <rect x="80" y="62" width="6" height="6" fill="#e0e0e0"/>
+          <rect x="56" y="70" width="6" height="6" fill="#e0e0e0"/>
+          <rect x="72" y="76" width="6" height="6" fill="#e0e0e0"/>
+          <rect x="88" y="50" width="6" height="6" fill="#e0e0e0"/>
+          <rect x="50" y="80" width="6" height="6" fill="#e0e0e0"/>
+          <rect x="84" y="78" width="6" height="6" fill="#e0e0e0"/>
+        </svg>
+        <span>QR-Code<br>hier einfügen</span>
+      </div>
+      <div class="qr-text">
+        <h3>Einfach scannen –<br><strong>sofort loslegen.</strong></h3>
+        <p>Keine Tipp-Fehler, keine Suche. Smartphone-Kamera auf den QR-Code – der Check öffnet sich direkt im Browser.</p>
+        <div class="qr-url">https://hu-check.gtue-oberboihingen.de</div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <h2>Stressfreie HU – so einfach kann es sein.</h2>
+      <p>Kostenlos und ohne Registrierung. Exklusiv für Kunden unserer GTÜ-Prüfstelle Oberboihingen.</p>
+      <a href="#" class="btn-primary">Jetzt Vorab-Check starten →</a>
+    </div>
+
+  </div>
+  <!-- /lp-body -->
+
+  <!-- FOOTER -->
+  <div class="gtue-footer">
+    <img src="gtue-logo.jpeg" alt="GTÜ" class="footer-logo">
+    <div class="footer-info">
+      GTÜ Kfz-Prüfservice Oberboihingen · Steffen Höhn<br>
+      Tel. <a href="tel:+4970222165282">07022 – 2165282</a> ·
+      <a href="https://gtue-kfz-pruefservice.de" target="_blank">gtue-kfz-pruefservice.de</a>
+    </div>
+    <div class="footer-powered">
+      Digitaler Service powered by<br>
+      <span>Riedel Classics</span> Digital · Wernau
+    </div>
+  </div>
+
+</div>
+<!-- /tab-landing -->
+
+
+<!-- ══════════════════════════════════════
+     TAB 2 · E-MAIL-VORLAGE
+══════════════════════════════════════ -->
+<div id="tab-email" class="tab-panel">
+<div class="email-wrapper">
+
+  <!-- Meta-Felder -->
+  <div class="email-meta">
+    <div class="email-meta-title">📋 Vorlage — vor dem Versand anpassen</div>
+    <div class="meta-row">
+      <span class="meta-label">An</span>
+      <span class="meta-value meta-editable">[Vorname Nachname] &lt;kunde@email.de&gt;</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">Von</span>
+      <span class="meta-value">info@gtue-kfz-pruefservice.de</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">Betreff</span>
+      <span class="meta-value">⚠️ Ihre HU läuft ab – jetzt kostenlos vorprüfen lassen</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">HU fällig</span>
+      <span class="meta-value meta-editable">[Monat Jahr, z. B. September 2025]</span>
+    </div>
+    <div class="meta-row">
+      <span class="meta-label">Kennzeichen</span>
+      <span class="meta-value meta-editable">[optional: ES-XX 123]</span>
+    </div>
+  </div>
+
+  <!-- EMAIL CARD -->
+  <div class="email-card">
+
+    <!-- Header -->
+    <div class="email-header">
+      <div class="email-logo-wrap">
+        <img src="gtue-logo.jpeg" alt="GTÜ" class="email-logo">
+        <div class="email-header-sep"></div>
+        <div class="email-station-hdr">
+          <strong>Kfz-Prüfservice Oberboihingen</strong>
+          Steffen Höhn · GTÜ-Vertragspartner
+        </div>
+      </div>
+      <div class="email-header-tag">HU-Erinnerung</div>
+    </div>
+
+    <!-- Body -->
+    <div class="email-body">
+
+      <p class="email-salutation">Guten Tag <strong>[Vorname]</strong>,</p>
+
+      <div class="hu-banner">
+        <div class="hu-banner-icon">📅</div>
+        <div class="hu-banner-text">
+          <strong>Ihre Hauptuntersuchung wird fällig: [Monat / Jahr]</strong>
+          <span>Fahrzeug [Kennzeichen optional] · GTÜ Kfz-Prüfservice Oberboihingen</span>
+        </div>
+      </div>
+
+      <p>Damit Ihr HU-Termin bei uns reibungslos verläuft, bieten wir Ihnen exklusiv einen <strong>kostenlosen HU-Vorab-Check</strong> an. In wenigen Minuten wissen Sie, ob Ihr Fahrzeug „HU-reif" ist – bequem zuhause, direkt am Smartphone.</p>
+
+      <ul class="check-list">
+        <li>Reifenzustand &amp; Profiltiefe einschätzen lassen</li>
+        <li>Beleuchtung auf Defekte prüfen (Blinker, Rücklichter, Scheinwerfer)</li>
+        <li>Karosserie &amp; Korrosion bewerten</li>
+        <li>Klare Ampelbewertung: was ist vor dem Termin zu erledigen</li>
+        <li>Kein Login, keine App – direkt im Browser auf dem Smartphone</li>
+      </ul>
+
+      <div class="email-qr-block">
+        <div class="email-qr-box">
+          <div class="qr-mock" style="position:relative;">
+            <div class="qr-c3"></div>
+          </div>
+          <span>Code<br>scannen</span>
+        </div>
+        <div class="email-qr-text">
+          <h4>📱 Jetzt Vorab-Check starten</h4>
+          <p>QR-Code mit der Smartphone-Kamera scannen – der Check öffnet sich sofort. Dauert ca. 3 Minuten.</p>
+          <div class="email-qr-url">https://hu-check.gtue-oberboihingen.de</div>
+        </div>
+      </div>
+
+      <div class="email-cta-row">
+        <a href="https://hu-check.gtue-oberboihingen.de" class="email-btn">Zum HU-Vorab-Check →</a>
+      </div>
+      <p class="email-hint">Oder Link direkt im Browser öffnen:</p>
+      <p class="email-url-fallback">https://hu-check.gtue-oberboihingen.de</p>
+
+      <p>Nachdem Check können Sie direkt bei uns einen <strong>HU-Termin buchen</strong> – oder erkannte Mängel vorab in einer Werkstatt Ihrer Wahl beheben lassen.</p>
+
+      <p>Für Fragen stehen wir Ihnen jederzeit gern zur Verfügung.</p>
+
+      <p style="margin-top:28px; color:#2a2a2a;">
+        Mit freundlichen Grüßen,<br>
+        <strong style="color:#1a1a1a;">Steffen Höhn</strong><br>
+        GTÜ Kfz-Prüfservice Oberboihingen<br>
+        <span style="font-size:13px; color:#9D9D9D;">Tel. 07022 – 2165282</span>
+      </p>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="email-footer">
+      <img src="gtue-logo.jpeg" alt="GTÜ" class="email-footer-logo">
+      <div class="email-footer-text">
+        GTÜ Kfz-Prüfservice Oberboihingen · Steffen Höhn<br>
+        <a href="https://gtue-kfz-pruefservice.de">gtue-kfz-pruefservice.de</a> ·
+        <a href="#">Abmelden</a> ·
+        <a href="https://gtue-kfz-pruefservice.de/datenschutz/">Datenschutz</a>
+      </div>
+      <div class="email-footer-right">
+        Diese E-Mail wurde von<br>
+        GTÜ Kfz-Prüfservice<br>
+        Oberboihingen versendet.
+      </div>
+    </div>
+
+  </div>
+  <!-- /email-card -->
+
+  <div class="email-helper">
+    <strong>📌 Versand-Hinweise:</strong><br>
+    Rote kursive Felder oben vor dem Versand anpassen: Kundenname, HU-Datum, Kennzeichen (optional).<br>
+    QR-Code: Unter <a href="https://qr-code-generator.com" target="_blank">qr-code-generator.com</a> aus dem Tool-Link einen Code erstellen und den Platzhalter ersetzen.<br>
+    Versand z. B. über Outlook, CleverReach oder direkt aus dem CRM / Terminbuchungssystem.
+  </div>
+
+</div>
+</div>
+<!-- /tab-email -->
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
