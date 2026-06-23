@@ -277,6 +277,192 @@
     font-weight: 900;
   }
 
+  /* ════════════════════════════
+     KZ-EINGABE BLOCK
+  ════════════════════════════ */
+  .kz-block {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 4px;
+    padding: 28px 32px 24px;
+    margin-top: 36px;
+    max-width: 520px;
+  }
+
+  .kz-block-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 18px;
+  }
+
+  .kz-fields-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+
+  /* Echtes Eurokennzeichen */
+  .kz-plate-wrap {
+    display: flex;
+    align-items: stretch;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.35);
+    flex-shrink: 0;
+    height: 52px;
+  }
+
+  .kz-eu-strip {
+    background: #003399;
+    width: 34px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    flex-shrink: 0;
+  }
+
+  .kz-eu-stars {
+    font-size: 7px;
+    color: #FFD700;
+    letter-spacing: 0;
+    line-height: 1;
+    text-align: center;
+  }
+
+  .kz-eu-d {
+    font-size: 11px;
+    font-weight: 900;
+    color: #fff;
+    font-family: 'Source Sans 3', sans-serif;
+    letter-spacing: 0.05em;
+  }
+
+  .kz-input {
+    background: #fff;
+    border: none;
+    outline: none;
+    font-family: 'FE-Schrift', 'Source Sans 3', 'Arial Narrow', Arial, sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    color: #111;
+    padding: 0 14px;
+    width: 200px;
+    height: 52px;
+    text-transform: uppercase;
+  }
+
+  .kz-input::placeholder {
+    color: #bbb;
+    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: 0.04em;
+  }
+
+  /* HU-Datum */
+  .hu-date-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .hu-date-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .hu-date-input {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 6px;
+    color: #fff;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 0 14px;
+    height: 52px;
+    outline: none;
+    width: 160px;
+    cursor: pointer;
+  }
+
+  .hu-date-input:focus {
+    border-color: rgba(227,0,27,0.6);
+    background: rgba(255,255,255,0.14);
+  }
+
+  .kz-benefit {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  .kz-benefit strong {
+    color: rgba(255,255,255,0.7);
+  }
+
+  .btn-kz-start {
+    background: var(--gtue-red);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 15px 32px;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 3px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .btn-kz-start:hover {
+    background: var(--gtue-red-dk);
+    transform: translateY(-1px);
+  }
+
+  .btn-kz-start:disabled {
+    background: rgba(227,0,27,0.35);
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .kz-skip {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .kz-skip a {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .kz-skip a:hover { color: rgba(255,255,255,0.55); }
+
+  @media (max-width: 640px) {
+    .kz-block { padding: 22px 18px 20px; }
+    .kz-fields-row { flex-direction: column; align-items: flex-start; gap: 14px; }
+    .kz-input { width: 180px; font-size: 20px; }
+    .hu-date-input { width: 180px; }
+  }
+
 
   /* ════════════════════════════
      STATS STRIP
@@ -1021,9 +1207,59 @@
         Kein Stress. Keine Überraschungen. Kostenlos.
       </p>
       <div class="hero-cta-row">
-        <a href="https://uri2503.github.io/auto_check_hu/?partner=station1" class="btn-primary">Vorab-Check starten →</a>
-        <span class="hero-trust">Kein Login · Direkt im Browser</span>
+        <span class="hero-trust">Kein Login · Direkt im Browser · Kostenlos</span>
       </div>
+
+      <!-- KZ-EINGABE -->
+      <div class="kz-block">
+        <div class="kz-block-label">Jetzt starten – Fahrzeug eingeben</div>
+
+        <div class="kz-fields-row">
+          <!-- Echtes Kennzeichen -->
+          <div class="kz-plate-wrap">
+            <div class="kz-eu-strip">
+              <div class="kz-eu-stars">★★★<br>★ ★<br>★★★</div>
+              <div class="kz-eu-d">D</div>
+            </div>
+            <input
+              type="text"
+              id="kzInput"
+              class="kz-input"
+              placeholder="ES-AB 123"
+              maxlength="10"
+              autocomplete="off"
+              autocorrect="off"
+              spellcheck="false"
+            >
+          </div>
+
+          <!-- HU-Datum -->
+          <div class="hu-date-wrap">
+            <div class="hu-date-label">HU fällig (optional)</div>
+            <input
+              type="month"
+              id="huDateInput"
+              class="hu-date-input"
+              min="2025-01"
+              max="2030-12"
+            >
+          </div>
+        </div>
+
+        <div class="kz-benefit">
+          <strong>Mit Kennzeichen:</strong> Ihr persönlicher PDF-Report wird direkt über die Prüfstelle zugestellt.
+        </div>
+
+        <button class="btn-kz-start" id="kzStartBtn" disabled>
+          <span>Vorab-Check starten</span>
+          <span>→</span>
+        </button>
+
+        <div class="kz-skip">
+          <a id="kzSkipLink">Ohne Kennzeichen fortfahren</a>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -1283,6 +1519,70 @@ function showTab(id, btn) {
   document.getElementById('tab-' + id).classList.add('active');
   btn.classList.add('active');
 }
+
+// ── SUPABASE CONFIG ──
+var SUPABASE_URL = 'https://ysqzdqazcgyuzdorauiq.supabase.co';
+var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlzcXpkcWF6Y2d5dXpkb3JhdWlxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk5ODM0NzcsImV4cCI6MjA5NTU1OTQ3N30.u5cbSVniUl5Zvlf2rdpnjtvDyKvv9csmPwvdtnEwWzE'; // TODO: eintragen
+var PARTNER_ID = 'station1';
+
+function trackLead(kennzeichen, huDatum, event) {
+  if (!kennzeichen) return;
+  fetch(SUPABASE_URL + '/rest/v1/hu_leads', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+      'Prefer': 'return=minimal'
+    },
+    body: JSON.stringify({
+      kennzeichen: kennzeichen.toUpperCase().replace(/\s+/g, ' ').trim(),
+      partner_id: PARTNER_ID,
+      event: event,
+      hu_faellig: huDatum || null
+    })
+  }).catch(function() { /* stilles Fehlschlagen, kein UI-Impact */ });
+}
+
+// ── KZ-EINGABE LOGIK ──
+(function initKzBlock() {
+  var kzInput    = document.getElementById('kzInput');
+  var huDate     = document.getElementById('huDateInput');
+  var startBtn   = document.getElementById('kzStartBtn');
+  var skipLink   = document.getElementById('kzSkipLink');
+
+  if (!kzInput) return; // Sicherheit falls Element nicht gefunden
+
+  var TOOL_URL = 'https://uri2503.github.io/auto_check_hu/?partner=station1';
+
+  function formatKz(val) {
+    // Buchstaben und Ziffern behalten, Rest normalisieren
+    return val.toUpperCase().replace(/[^A-Z0-9\- ]/g, '');
+  }
+
+  function isValidKz(val) {
+    var clean = val.replace(/[\s\-]/g, '');
+    return clean.length >= 2; // mind. Ortszeichen
+  }
+
+  kzInput.addEventListener('input', function() {
+    this.value = formatKz(this.value);
+    startBtn.disabled = !isValidKz(this.value);
+  });
+
+  startBtn.addEventListener('click', function() {
+    var kz = kzInput.value.trim();
+    var hu = huDate.value || '';
+    trackLead(kz, hu, 'opened');
+    var url = TOOL_URL + '&kz=' + encodeURIComponent(kz);
+    if (hu) url += '&hu=' + encodeURIComponent(hu);
+    window.location.href = url;
+  });
+
+  skipLink.addEventListener('click', function() {
+    window.location.href = TOOL_URL;
+  });
+})();
 </script>
 </body>
 </html>
